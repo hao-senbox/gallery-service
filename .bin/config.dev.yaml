@@ -1,0 +1,88 @@
+# This file should be added to .gitignore in production project.
+app:
+  name: gallery-service
+  version: 1.0.0
+  environment: development
+  api:
+    rest:
+      host: 0.0.0.0
+      port: 8011
+      setting:
+        debug: true
+        debugErrorsResponse: true
+        ignoreLogUrls: [ "metrics" ]
+
+zap:
+  cores:
+    console:
+      type: stream
+      level: info
+      encoding: console
+      time_encoder: iso8601
+    file:
+      type: file
+      encoding: json
+      time_encoder: iso8601
+      file:
+        path: "/logs"
+        max_backups: 7
+        max_age: 30
+        max_size: 32
+
+mongo:
+  uri: "mongodb://localhost:27017/"
+  username: senbox
+  password: senbox
+  db: gallery-service
+  connect_timeout: 30
+  max_conn_idle_time: 3
+  min_pool_size: 20
+  max_pool_size: 300
+  collections:
+    cluster: cluster
+    folder: folder
+
+consul:
+  host: localhost
+  port: 8500
+
+registry:
+  host: localhost
+
+kafka:
+  client: gallery-service
+  brokers: ["localhost:9101", "localhost:9095", "localhost:9098"]
+  replication_factor: 3
+  topics:
+    product_created:
+      name: cluster-created
+      partitions: 1
+      replication_factor: 3
+    product_updated:
+      name: cluster-updated
+      partitions: 1
+      replication_factor: 3
+    product_deleted:
+      name: cluster-deleted
+      partitions: 1
+      replication_factor: 3
+    product_picked:
+      name: cluster-picked
+      partitions: 1
+      replication_factor: 3
+  groups:
+    product_created: cluster-created
+    product_updated: cluster-updated
+    product_deleted: cluster-deleted
+    product_picked: cluster-picked
+  client_config:
+    producer_config:
+      metadata_max_age: 60 # seconds
+      max_buffered_records: 1_000_000
+      producer_batch_max_bytes: 16_000_000
+      record_partitioner: 1_000_000
+    consumer_config:
+      metadata_max_age: 60 # seconds
+      fetch_max_bytes: 50_000_000
+      fetch_max_partition_bytes: 25_000_000
+      fetch_max_wait: 10 # seconds
