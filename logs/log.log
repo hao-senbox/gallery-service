@@ -1053,3 +1053,173 @@
 {"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:29:18.570+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(GALLERY-SERVICE) shutting down the server"}
 {"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:29:21.570+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(GALLERY-SERVICE) server exited properly"}
 {"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:29:21.575+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"Disconnected from MongoDB."}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:45:49.495+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"Connected to MongoDB!"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:45:49.497+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(CreatedIndexes) indexes: {[cluster.text_index]}"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:45:49.498+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(CreatedIndexes) indexes: {[folder.folder_name_index folder.folder_thumbnail_key_unique_index]}"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:45:49.498+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(indexes) results: {[]primitive.M{primitive.M{\"key\":primitive.M{\"_id\":1}, \"name\":\"_id_\", \"v\":2}, primitive.M{\"default_language\":\"english\", \"key\":primitive.M{\"_fts\":\"text\", \"_ftsx\":1}, \"language_override\":\"language\", \"name\":\"cluster.text_index\", \"sparse\":true, \"textIndexVersion\":3, \"v\":2, \"weights\":primitive.M{\"cluster_name\":1, \"note\":1, \"title\":1}}}}"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:45:49.499+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(Collections) created collections: {[cluster folder]}"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:45:49.506+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"successfully register service: localhost:8011"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:45:49.508+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"new member <gallery-service> joined, node <server-1>"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:45:55.908+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(Handlers.GetByID) id: {6881fbeb4ed025b0128cbbe3}"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:45:55.908+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Input - folderID: '6881fbeb4ed025b0128cbbe3', page: 1, size: 10"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:45:55.908+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Processed pagination - page: 1, size: 10"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:45:55.908+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Skip: 0, Limit: 10"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:45:55.908+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Aggregation pipeline: [map[$match:map[folder_id:ObjectID(\"6881fbeb4ed025b0128cbbe3\")]] map[$skip:0] map[$limit:10]]"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:45:55.911+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Total documents in clusters collection: 0"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:45:55.913+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Documents matching folderID '6881fbeb4ed025b0128cbbe3': 0"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:45:55.914+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Top folder_id values in collection: []"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:45:55.915+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Found 0 clusters after aggregation"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:45:55.916+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Final results - Total count: 0, Clusters returned: 0"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:45:55.916+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Response - TotalCount: 0, TotalPages: 0, Page: 1, Size: 10, HasMore: false, ClustersCount: 0"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:45:55.917+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(Hanlders.GetAll) result: {&{Pagination:{TotalCount:0 TotalPages:0 Page:1 Size:10 HasMore:false} Clusters:[]}}"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:45:55.917+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"HTTP","METHOD":"GET","URI":"/api/v1/gallery/clusters/6881fbeb4ed025b0128cbbe3/folders","STATUS":200,"SIZE":196,"TIME":"15.600528ms"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:46:14.382+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(Handlers.GetByID) id: {6881fbeb4ed025b0128cbbe3}"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:46:14.382+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Input - folderID: '6881fbeb4ed025b0128cbbe3', page: 1, size: 10"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:46:14.382+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Processed pagination - page: 1, size: 10"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:46:14.382+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Skip: 0, Limit: 10"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:46:14.382+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Aggregation pipeline: [map[$match:map[folder_id:ObjectID(\"6881fbeb4ed025b0128cbbe3\")]] map[$skip:0] map[$limit:10]]"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:46:14.385+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Total documents in clusters collection: 0"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:46:14.386+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Documents matching folderID '6881fbeb4ed025b0128cbbe3': 0"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:46:14.388+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Top folder_id values in collection: []"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:46:14.389+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Found 0 clusters after aggregation"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:46:14.390+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Final results - Total count: 0, Clusters returned: 0"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:46:14.390+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Response - TotalCount: 0, TotalPages: 0, Page: 1, Size: 10, HasMore: false, ClustersCount: 0"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:46:14.390+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(Hanlders.GetAll) result: {&{Pagination:{TotalCount:0 TotalPages:0 Page:1 Size:10 HasMore:false} Clusters:[]}}"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:46:14.390+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"HTTP","METHOD":"GET","URI":"/api/v1/gallery/clusters/6881fbeb4ed025b0128cbbe3/folders","STATUS":200,"SIZE":195,"TIME":"13.274109ms"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:46:50.997+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(Handlers.GetByID) id: {68809533e2abed21ba27f629}"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:46:50.997+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Input - folderID: '68809533e2abed21ba27f629', page: 1, size: 10"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:46:50.997+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Processed pagination - page: 1, size: 10"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:46:50.997+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Skip: 0, Limit: 10"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:46:50.997+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Aggregation pipeline: [map[$match:map[folder_id:ObjectID(\"68809533e2abed21ba27f629\")]] map[$skip:0] map[$limit:10]]"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:46:51.004+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Total documents in clusters collection: 0"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:46:51.006+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Documents matching folderID '68809533e2abed21ba27f629': 0"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:46:51.008+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Top folder_id values in collection: []"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:46:51.011+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Found 0 clusters after aggregation"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:46:51.014+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Final results - Total count: 0, Clusters returned: 0"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:46:51.014+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Response - TotalCount: 0, TotalPages: 0, Page: 1, Size: 10, HasMore: false, ClustersCount: 0"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:46:51.014+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(Hanlders.GetAll) result: {&{Pagination:{TotalCount:0 TotalPages:0 Page:1 Size:10 HasMore:false} Clusters:[]}}"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:46:51.014+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"HTTP","METHOD":"GET","URI":"/api/v1/gallery/clusters/68809533e2abed21ba27f629/folders","STATUS":200,"SIZE":196,"TIME":"24.737617ms"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:47:11.930+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(GALLERY-SERVICE) shutting down the server"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:47:14.931+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(GALLERY-SERVICE) server exited properly"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:47:14.935+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"Disconnected from MongoDB."}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:47:49.710+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"Connected to MongoDB!"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:47:49.712+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(CreatedIndexes) indexes: {[cluster.text_index]}"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:47:49.713+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(CreatedIndexes) indexes: {[folder.folder_name_index folder.folder_thumbnail_key_unique_index]}"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:47:49.714+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(indexes) results: {[]primitive.M{primitive.M{\"key\":primitive.M{\"_id\":1}, \"name\":\"_id_\", \"v\":2}, primitive.M{\"default_language\":\"english\", \"key\":primitive.M{\"_fts\":\"text\", \"_ftsx\":1}, \"language_override\":\"language\", \"name\":\"cluster.text_index\", \"sparse\":true, \"textIndexVersion\":3, \"v\":2, \"weights\":primitive.M{\"cluster_name\":1, \"note\":1, \"title\":1}}}}"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:47:49.714+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(Collections) created collections: {[cluster folder]}"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:47:49.721+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"successfully register service: localhost:8011"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:47:49.724+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"new member <gallery-service> joined, node <server-1>"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:47:56.826+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(Hanlders.GetAll) result: {&{Pagination:{TotalCount:2 TotalPages:1 Page:1 Size:10 HasMore:false} Folders:[{ID:6881eb5defe7707f6192b2ef FolderName:test FolderThumbnailKey:abc FolderThumbnailURL:abc ParentID:} {ID:6881ec6cefe7707f6192b2f1 FolderName:test 2 FolderThumbnailKey:abcd FolderThumbnailURL:abcd ParentID:}]}}"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:47:56.828+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"HTTP","METHOD":"GET","URI":"/api/v1/gallery/folders","STATUS":200,"SIZE":238,"TIME":"13.217738ms"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:48:03.379+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(Handlers.GetByID) id: {68809533e2abed21ba27f629}"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:48:03.379+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Input - folderID: '68809533e2abed21ba27f629', page: 1, size: 10"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:48:03.379+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Processed pagination - page: 1, size: 10"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:48:03.379+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Skip: 0, Limit: 10"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:48:03.379+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Aggregation pipeline: [map[$match:map[folder_id:ObjectID(\"68809533e2abed21ba27f629\")]] map[$skip:0] map[$limit:10]]"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:48:03.380+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Total documents in clusters collection: 0"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:48:03.381+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Documents matching folderID '68809533e2abed21ba27f629': 0"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:48:03.382+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Top folder_id values in collection: []"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:48:03.383+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Found 0 clusters after aggregation"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:48:03.384+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Final results - Total count: 0, Clusters returned: 0"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:48:03.384+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Response - TotalCount: 0, TotalPages: 0, Page: 1, Size: 10, HasMore: false, ClustersCount: 0"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:48:03.384+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(Hanlders.GetAll) result: {&{Pagination:{TotalCount:0 TotalPages:0 Page:1 Size:10 HasMore:false} Clusters:[]}}"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:48:03.384+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"HTTP","METHOD":"GET","URI":"/api/v1/gallery/clusters/68809533e2abed21ba27f629/folders","STATUS":200,"SIZE":196,"TIME":"10.007082ms"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:49:46.751+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(GALLERY-SERVICE) shutting down the server"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:49:49.752+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(GALLERY-SERVICE) server exited properly"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:49:49.758+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"Disconnected from MongoDB."}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:49:51.525+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"Connected to MongoDB!"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:49:51.526+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(CreatedIndexes) indexes: {[cluster.text_index]}"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:49:51.528+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(CreatedIndexes) indexes: {[folder.folder_name_index folder.folder_thumbnail_key_unique_index]}"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:49:51.529+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(indexes) results: {[]primitive.M{primitive.M{\"key\":primitive.M{\"_id\":1}, \"name\":\"_id_\", \"v\":2}, primitive.M{\"default_language\":\"english\", \"key\":primitive.M{\"_fts\":\"text\", \"_ftsx\":1}, \"language_override\":\"language\", \"name\":\"cluster.text_index\", \"sparse\":true, \"textIndexVersion\":3, \"v\":2, \"weights\":primitive.M{\"cluster_name\":1, \"note\":1, \"title\":1}}}}"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:49:51.529+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(Collections) created collections: {[cluster folder]}"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:49:51.537+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"successfully register service: localhost:8011"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:49:51.540+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"new member <gallery-service> joined, node <server-1>"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:49:56.480+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(Handlers.GetByID) id: {68809533e2abed21ba27f629}"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:49:56.480+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Input - folderID: '68809533e2abed21ba27f629', page: 1, size: 10"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:49:56.480+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Processed pagination - page: 1, size: 10"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:49:56.480+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Skip: 0, Limit: 10"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:49:56.480+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Aggregation pipeline: [map[$match:map[folder_id:ObjectID(\"68809533e2abed21ba27f629\")]] map[$skip:0] map[$limit:10]]"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:49:56.481+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Total documents in clusters collection: 0"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:49:56.482+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Documents matching folderID '68809533e2abed21ba27f629': 0"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:49:56.483+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Top folder_id values in collection: []"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:49:56.484+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Found 0 clusters after aggregation"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:49:56.485+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Final results - Total count: 0, Clusters returned: 0"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:49:56.485+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Response - TotalCount: 0, TotalPages: 0, Page: 1, Size: 10, HasMore: false, ClustersCount: 0"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:49:56.485+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(Hanlders.GetAll) result: {&{Pagination:{TotalCount:0 TotalPages:0 Page:1 Size:10 HasMore:false} Clusters:[]}}"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:49:56.485+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"HTTP","METHOD":"GET","URI":"/api/v1/gallery/clusters/68809533e2abed21ba27f629/folders","STATUS":200,"SIZE":196,"TIME":"11.010098ms"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:49:59.401+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(GALLERY-SERVICE) shutting down the server"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:50:02.402+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(GALLERY-SERVICE) server exited properly"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:50:02.408+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"Disconnected from MongoDB."}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:50:04.107+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"Connected to MongoDB!"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:50:04.108+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(CreatedIndexes) indexes: {[cluster.text_index]}"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:50:04.109+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(CreatedIndexes) indexes: {[folder.folder_name_index folder.folder_thumbnail_key_unique_index]}"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:50:04.109+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(indexes) results: {[]primitive.M{primitive.M{\"key\":primitive.M{\"_id\":1}, \"name\":\"_id_\", \"v\":2}, primitive.M{\"default_language\":\"english\", \"key\":primitive.M{\"_fts\":\"text\", \"_ftsx\":1}, \"language_override\":\"language\", \"name\":\"cluster.text_index\", \"sparse\":true, \"textIndexVersion\":3, \"v\":2, \"weights\":primitive.M{\"cluster_name\":1, \"note\":1, \"title\":1}}}}"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:50:04.110+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(Collections) created collections: {[cluster folder]}"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:50:04.117+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"successfully register service: localhost:8011"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:50:04.120+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"new member <gallery-service> joined, node <server-1>"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:50:08.595+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(Handlers.GetByID) id: {68809533e2abed21ba27f629}"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:50:08.595+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Input - folderID: '68809533e2abed21ba27f629', page: 1, size: 10"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:50:08.595+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Processed pagination - page: 1, size: 10"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:50:08.595+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Skip: 0, Limit: 10"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:50:08.596+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Aggregation pipeline: [map[$match:map[folder_id:ObjectID(\"68809533e2abed21ba27f629\")]] map[$skip:0] map[$limit:10]]"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:50:08.597+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Total documents in clusters collection: 0"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:50:08.598+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Documents matching folderID '68809533e2abed21ba27f629': 0"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:50:08.599+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Top folder_id values in collection: []"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:50:08.600+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Found 0 clusters after aggregation"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:50:08.602+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Final results - Total count: 0, Clusters returned: 0"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:50:08.602+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Response - TotalCount: 0, TotalPages: 0, Page: 1, Size: 10, HasMore: false, ClustersCount: 0"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:50:08.602+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(Hanlders.GetAll) result: {&{Pagination:{TotalCount:0 TotalPages:0 Page:1 Size:10 HasMore:false} Clusters:[]}}"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:50:08.602+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"HTTP","METHOD":"GET","URI":"/api/v1/gallery/clusters/68809533e2abed21ba27f629/folders","STATUS":200,"SIZE":196,"TIME":"15.27469ms"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:50:20.701+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(GALLERY-SERVICE) shutting down the server"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:50:23.702+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(GALLERY-SERVICE) server exited properly"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:50:23.707+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"Disconnected from MongoDB."}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:54:51.279+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"Connected to MongoDB!"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:54:51.281+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(CreatedIndexes) indexes: {[cluster.text_index]}"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:54:51.281+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(CreatedIndexes) indexes: {[folder.folder_name_index folder.folder_thumbnail_key_unique_index]}"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:54:51.282+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(indexes) results: {[]primitive.M{primitive.M{\"key\":primitive.M{\"_id\":1}, \"name\":\"_id_\", \"v\":2}, primitive.M{\"default_language\":\"english\", \"key\":primitive.M{\"_fts\":\"text\", \"_ftsx\":1}, \"language_override\":\"language\", \"name\":\"cluster.text_index\", \"sparse\":true, \"textIndexVersion\":3, \"v\":2, \"weights\":primitive.M{\"cluster_name\":1, \"note\":1, \"title\":1}}}}"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:54:51.283+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(Collections) created collections: {[cluster folder]}"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:54:51.295+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"successfully register service: localhost:8011"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:54:51.303+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"new member <gallery-service> joined, node <server-1>"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:54:54.612+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(Handlers.GetByID) id: {68809533e2abed21ba27f629}"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:54:54.612+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Input - folderID: '68809533e2abed21ba27f629', page: 1, size: 10"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:54:54.612+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Processed pagination - page: 1, size: 10"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:54:54.612+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Skip: 0, Limit: 10"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:54:54.612+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Aggregation pipeline: [map[$match:map[folder_id:ObjectID(\"68809533e2abed21ba27f629\")]] map[$skip:0] map[$limit:10]]"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:54:54.614+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Total documents in clusters collection: 0"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:54:54.616+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Documents matching folderID '68809533e2abed21ba27f629': 0"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:54:54.618+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Top folder_id values in collection: []"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:54:54.619+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Found 0 clusters after aggregation"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:54:54.620+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Final results - Total count: 0, Clusters returned: 0"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:54:54.620+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Response - TotalCount: 0, TotalPages: 0, Page: 1, Size: 10, HasMore: false, ClustersCount: 0"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:54:54.620+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(Hanlders.GetAll) result: {&{Pagination:{TotalCount:0 TotalPages:0 Page:1 Size:10 HasMore:false} Clusters:[]}}"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:54:54.620+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"HTTP","METHOD":"GET","URI":"/api/v1/gallery/clusters/68809533e2abed21ba27f629/folders","STATUS":200,"SIZE":196,"TIME":"19.168073ms"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:55:23.197+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(Hanlders.GetAll) result: {&{Pagination:{TotalCount:2 TotalPages:1 Page:1 Size:10 HasMore:false} Folders:[{ID:6881eb5defe7707f6192b2ef FolderName:test FolderThumbnailKey:abc FolderThumbnailURL:abc ParentID:} {ID:6881ec6cefe7707f6192b2f1 FolderName:test 2 FolderThumbnailKey:abcd FolderThumbnailURL:abcd ParentID:}]}}"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:55:23.199+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"HTTP","METHOD":"GET","URI":"/api/v1/gallery/folders","STATUS":200,"SIZE":238,"TIME":"10.453542ms"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:55:48.930+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(GALLERY-SERVICE) shutting down the server"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:55:51.931+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(GALLERY-SERVICE) server exited properly"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:55:51.939+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"Disconnected from MongoDB."}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:55:53.576+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"Connected to MongoDB!"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:55:53.578+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(CreatedIndexes) indexes: {[cluster.text_index]}"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:55:53.579+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(CreatedIndexes) indexes: {[folder.folder_name_index folder.folder_thumbnail_key_unique_index]}"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:55:53.579+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(indexes) results: {[]primitive.M{primitive.M{\"key\":primitive.M{\"_id\":1}, \"name\":\"_id_\", \"v\":2}, primitive.M{\"default_language\":\"english\", \"key\":primitive.M{\"_fts\":\"text\", \"_ftsx\":1}, \"language_override\":\"language\", \"name\":\"cluster.text_index\", \"sparse\":true, \"textIndexVersion\":3, \"v\":2, \"weights\":primitive.M{\"cluster_name\":1, \"note\":1, \"title\":1}}}}"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:55:53.580+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(Collections) created collections: {[cluster folder]}"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:55:53.587+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"successfully register service: localhost:8011"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:55:53.590+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"new member <gallery-service> joined, node <server-1>"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:56:00.041+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"HTTP","METHOD":"POST","URI":"/api/v1/gallery/clusters","STATUS":201,"SIZE":126,"TIME":"8.731641ms"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:56:04.011+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(Handlers.GetByID) id: {68809533e2abed21ba27f629}"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:56:04.012+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Input - folderID: '68809533e2abed21ba27f629', page: 1, size: 10"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:56:04.012+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Processed pagination - page: 1, size: 10"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:56:04.012+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Skip: 0, Limit: 10"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:56:04.012+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Aggregation pipeline: [map[$match:map[folder_id:ObjectID(\"68809533e2abed21ba27f629\")]] map[$skip:0] map[$limit:10]]"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:56:04.013+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Total documents in clusters collection: 4"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:56:04.014+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Documents matching folderID '68809533e2abed21ba27f629': 0"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:56:04.015+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Top folder_id values in collection: [map[_id:ObjectID(\"6881fbeb4ed025b0128cbbe3\") count:2] map[_id:ObjectID(\"68809533e2abed21ba27f629\") count:2]]"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:56:04.016+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Found 2 clusters after aggregation"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:56:04.016+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) First cluster - ID: ObjectID(\"68819f1cb065e05f46b824d4\"), FolderID: ObjectID(\"68809533e2abed21ba27f629\")"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:56:04.017+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Final results - Total count: 2, Clusters returned: 2"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:56:04.017+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(ClusterRepository.GetAllByFolderID) Response - TotalCount: 2, TotalPages: 1, Page: 1, Size: 10, HasMore: false, ClustersCount: 2"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:56:04.017+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(Hanlders.GetAll) result: {&{Pagination:{TotalCount:2 TotalPages:1 Page:1 Size:10 HasMore:false} Clusters:[{ID:68819f1cb065e05f46b824d4 ClusterName:sample cluster ImageKey:img_key ImageURL:img_url} {ID:6881ee50f2b38cc85cc5ef2e ClusterName:example-cluster ImageKey:image123 ImageURL:https://example.com/images/image123.png}]}}"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T16:56:04.019+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"HTTP","METHOD":"GET","URI":"/api/v1/gallery/clusters/68809533e2abed21ba27f629/folders","STATUS":200,"SIZE":271,"TIME":"13.110937ms"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T17:20:18.713+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(GALLERY-SERVICE) shutting down the server"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T17:20:21.714+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"(GALLERY-SERVICE) server exited properly"}
+{"[LEVEL]":"INFO","[TIME]":"2025-07-24T17:20:21.721+0700","[SERVICE]":"(GALLERY-SERVICE)","[MESSAGE]":"Disconnected from MongoDB."}

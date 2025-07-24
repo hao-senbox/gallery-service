@@ -126,9 +126,6 @@ func (p *clusterRepository) GetAll(ctx context.Context, pq *utils.Pagination) (*
 }
 
 func (p *clusterRepository) GetAllByFolderID(ctx context.Context, folderID string, pq *utils.Pagination) (*cluster.GetAllClusterResponseDto, error) {
-	// Debug: Log input parameters
-	p.log.Infof("(ClusterRepository.GetAllByFolderID) Input - folderID: '%s', page: %d, size: %d", folderID, pq.Page, pq.Size)
-
 	if pq.Page <= 0 {
 		pq.Page = 1
 	}
@@ -138,18 +135,12 @@ func (p *clusterRepository) GetAllByFolderID(ctx context.Context, folderID strin
 	}
 	folderObjectID, err := primitive.ObjectIDFromHex(folderID)
 	if err != nil {
-		p.log.Errorf("(ClusterRepository.GetAllByFolderID) Error parsing folderID: %v", err)
 		return nil, errors.Wrap(err, "primitive.ObjectIDFromHex")
 	}
-	// Debug: Log processed pagination
-	p.log.Infof("(ClusterRepository.GetAllByFolderID) Processed pagination - page: %d, size: %d", pq.Page, pq.Size)
 
 	// Prepare pagination options
 	skip := int64((pq.Page - 1) * pq.Size)
 	limit := int64(pq.Size)
-
-	// Debug: Log skip and limit values
-	p.log.Infof("(ClusterRepository.GetAllByFolderID) Skip: %d, Limit: %d", skip, limit)
 
 	aggPipeline := []bson.M{
 		{
@@ -165,8 +156,6 @@ func (p *clusterRepository) GetAllByFolderID(ctx context.Context, folderID strin
 		},
 	}
 
-	// Debug: Log aggregation pipeline
-	p.log.Infof("(ClusterRepository.GetAllByFolderID) Aggregation pipeline: %+v", aggPipeline)
 
 	// Debug: First, let's check if there are ANY documents in the collection
 	totalDocsInCollection, err := p.getClustersCollection().CountDocuments(ctx, bson.M{})
@@ -191,7 +180,7 @@ func (p *clusterRepository) GetAllByFolderID(ctx context.Context, folderID strin
 	pipeline := []bson.M{
 		{
 			"$group": bson.M{
-				"_id": "$folder_id",
+				"_id":   "$folder_id",
 				"count": bson.M{"$sum": 1},
 			},
 		},
@@ -231,13 +220,13 @@ func (p *clusterRepository) GetAllByFolderID(ctx context.Context, folderID strin
 
 	// Debug: If we found clusters, log the first one (without sensitive data)
 	if len(clusters) > 0 {
-		p.log.Infof("(ClusterRepository.GetAllByFolderID) First cluster - ID: %s, FolderID: %s", 
+		p.log.Infof("(ClusterRepository.GetAllByFolderID) First cluster - ID: %s, FolderID: %s",
 			clusters[0].ID, clusters[0].FolderID)
 	}
 
 	// Count query for total (this is the same as countBeforePagination, but keeping for consistency)
 	count, err := p.getClustersCollection().CountDocuments(ctx, bson.M{
-		"folder_id": folderID,
+		"folder_id": folderObjectID,
 	})
 	if err != nil {
 		p.log.Errorf("(ClusterRepository.GetAllByFolderID) Error counting clusters: %v", err)
@@ -259,11 +248,11 @@ func (p *clusterRepository) GetAllByFolderID(ctx context.Context, folderID strin
 	}
 
 	// Debug: Log the final response structure (without actual data)
-	p.log.Infof("(ClusterRepository.GetAllByFolderID) Response - TotalCount: %d, TotalPages: %d, Page: %d, Size: %d, HasMore: %v, ClustersCount: %d", 
-		result.Pagination.TotalCount, 
-		result.Pagination.TotalPages, 
-		result.Pagination.Page, 
-		result.Pagination.Size, 
+	p.log.Infof("(ClusterRepository.GetAllByFolderID) Response - TotalCount: %d, TotalPages: %d, Page: %d, Size: %d, HasMore: %v, ClustersCount: %d",
+		result.Pagination.TotalCount,
+		result.Pagination.TotalPages,
+		result.Pagination.Page,
+		result.Pagination.Size,
 		result.Pagination.HasMore,
 		len(result.Clusters))
 
