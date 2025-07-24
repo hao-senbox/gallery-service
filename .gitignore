@@ -28,3 +28,18 @@ tmp/
 # Project build
 main
 *templ.go
+
+
+# Hệ thống macOS
+.DS_Store
+pkg/.DS_Store
+
+# Log file
+logs/
+*.log
+
+# Module Go
+go.sum
+
+#config file
+.bin/config.dev.yaml
