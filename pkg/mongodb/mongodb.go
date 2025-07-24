@@ -44,19 +44,19 @@ type service struct {
 // DBConfig returns the MongoDB client configuration.
 func DBConfig(cfg *Config) *options.ClientOptions {
 	// Fetching config values
-	username := cfg.Username
-	password := cfg.Password
+	// username := cfg.Username
+	// password := cfg.Password
 
 	//connectionString := fmt.Sprintf("mongodb://%s:%s@%s:%d/%s?authSource=%s&authMechanism=%s", username, password, "127.0.0.1", 17017, cfg.Db, "admin", "SCRAM-SHA-1")
 
 	// Create client options
 	clientOptions := options.Client().ApplyURI(cfg.URI).
-		SetAuth(options.Credential{
-			Username:      username,
-			Password:      password,
-			AuthSource:    "admin",
-			AuthMechanism: "SCRAM-SHA-1",
-		}).
+		// SetAuth(options.Credential{
+		// 	Username:      username,
+		// 	Password:      password,
+		// 	AuthSource:    "admin",
+		// 	AuthMechanism: "SCRAM-SHA-1",
+		// }).
 		SetConnectTimeout(cfg.ConnectionTimeout * time.Second).
 		SetMaxConnIdleTime(cfg.MaxConnIdleTime * time.Minute).
 		SetMinPoolSize(uint64(cfg.MinPoolSize)).

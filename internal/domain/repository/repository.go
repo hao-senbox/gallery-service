@@ -12,6 +12,7 @@ type ClusterRepository interface {
 	Insert(ctx context.Context, cluster *models.Cluster) (string, error)
 	Update(ctx context.Context, cluster *models.Cluster) error
 	GetAll(ctx context.Context, pq *utils.Pagination) (*cluster.GetAllClusterResponseDto, error)
+	GetAllByFolderID(ctx context.Context, folderID string, pq *utils.Pagination) (*cluster.GetAllClusterResponseDto, error)
 	GetByID(ctx context.Context, clusterID string) (*models.Cluster, error)
 	Search(ctx context.Context, query map[string]interface{}, pq *utils.Pagination) (*cluster.GetAllClusterResponseDto, error)
 	Delete(ctx context.Context, clusterID string) (bool, error)

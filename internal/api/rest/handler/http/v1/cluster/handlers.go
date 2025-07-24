@@ -13,10 +13,11 @@ import (
 	httpPkg "gallery-service/pkg/http"
 	"gallery-service/pkg/utils"
 	"gallery-service/pkg/zap"
+	"net/http"
+
 	"github.com/gofiber/fiber/v2"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
-	"net/http"
 )
 
 type clusterHandlers struct {
@@ -288,4 +289,34 @@ func (p *clusterHandlers) GetClusterLanguages(c *fiber.Ctx) error {
 	}
 
 	return httpPkg.SuccessCtxResponse(c, http.StatusOK, "Cluster languages found", res)
+}
+
+func (p *clusterHandlers) GetClusterFolders(c *fiber.Ctx) error {
+	ctx := c.Context()
+	param := c.Params(constants.ID)
+	p.log.Infof("(Handlers.GetByID) id: {%s}", param)
+
+	folderID, err := primitive.ObjectIDFromHex(param)
+	if err != nil {
+		p.log.Errorf("(Handlers.GetByID)(uuid.FromString) err: {%v}", err)
+		return httpPkg.ErrorCtxResponse(c, err, p.cfg.App.API.Rest.Setting.DebugErrorsResponse)
+	}
+
+	clusterQuery := clusterQueries.NewGetFolderID(folderID.Hex())
+	err = p.val.DataValidation(clusterQuery)
+	if err != nil {
+		return httpPkg.ErrorCtxResponse(c, err, p.cfg.App.API.Rest.Setting.DebugErrorsResponse)
+	}
+
+	pq := utils.NewPaginationQuery(0, 0)
+
+	response, err := p.ps.Queries.GetAllClusterFolder.Handle(ctx, clusterQuery, pq)
+	if err != nil {
+		p.log.Errorf("(Create.Handle) Error fetching clusters: {%v}", err)
+		return httpPkg.ErrorCtxResponse(c, err, p.cfg.App.API.Rest.Setting.DebugErrorsResponse)
+	}
+
+	p.log.Infof("(Hanlders.GetAll) result: {%+v}", response)
+
+	return httpPkg.SuccessCtxResponse(c, http.StatusOK, "Cluster found", response)
 }

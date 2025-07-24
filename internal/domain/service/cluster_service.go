@@ -32,6 +32,7 @@ func NewClusterService(
 	deleteClusterHandler := clusterCommands.NewDeleteClusterHandler(log, clusterRepo)
 
 	getAllClusterHandler := cluster.NewGetAllClusterHandler(log, clusterRepo)
+	getClusterFolder := cluster.NewGetAllClusterFolderHandler(log, clusterRepo)
 	getClusterByIDHandler := cluster.NewGetClusterByIDHandler(log, clusterRepo)
 	searchClustersHandler := cluster.NewSearchClustersHandler(log, clusterRepo)
 
@@ -44,6 +45,7 @@ func NewClusterService(
 		getAllClusterHandler,
 		getClusterByIDHandler,
 		searchClustersHandler,
+		getClusterFolder,
 	)
 
 	clusterService = &ClusterService{Commands: commands, Queries: queries}

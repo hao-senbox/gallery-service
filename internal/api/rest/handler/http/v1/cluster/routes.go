@@ -17,6 +17,7 @@ func (p *clusterHandlers) MapRoutes() func(router fiber.Router) {
 		router.Get("/components", p.GetClusterComponents)
 		router.Get("/languages", p.GetClusterLanguages)
 		router.Get("/:id", p.GetClusterByID)
+		router.Get("/:id/folders", p.GetClusterFolders)
 
 		router.Post("/", p.CreateCluster)
 		router.Put("/", p.UpdateCluster)

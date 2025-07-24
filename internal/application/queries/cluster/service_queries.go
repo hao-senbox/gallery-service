@@ -5,20 +5,23 @@ import (
 )
 
 type Queries struct {
-	GetAllCluster  GetAllClusterQueryHandler
-	GetClusterByID GetClusterByIDQueryHandler
-	SearchClusters SearchClustersQueryHandler
+	GetAllCluster       GetAllClusterQueryHandler
+	GetClusterByID      GetClusterByIDQueryHandler
+	SearchClusters      SearchClustersQueryHandler
+	GetAllClusterFolder GetAllClusterFolderQueryHandler
 }
 
 func NewClusterQueries(
 	getAllCluster GetAllClusterQueryHandler,
 	getClusterByID GetClusterByIDQueryHandler,
 	searchClusters SearchClustersQueryHandler,
+	getClusterFolder GetAllClusterFolderQueryHandler,
 ) *Queries {
 	return &Queries{
-		GetAllCluster:  getAllCluster,
-		GetClusterByID: getClusterByID,
-		SearchClusters: searchClusters,
+		GetAllCluster:       getAllCluster,
+		GetClusterByID:      getClusterByID,
+		SearchClusters:      searchClusters,
+		GetAllClusterFolder: getClusterFolder,
 	}
 }
 
@@ -28,6 +31,14 @@ type GetClusterByIDQuery struct {
 
 func NewGetClusterByIDQuery(ID string) *GetClusterByIDQuery {
 	return &GetClusterByIDQuery{ID: ID}
+}
+
+type GetFolderID struct {
+	ID string `json:"folder_id" validate:"required"`
+}
+
+func NewGetFolderID(ID string) *GetFolderID {
+	return &GetFolderID{ID: ID}
 }
 
 type SearchClustersQuery struct {
