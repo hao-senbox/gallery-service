@@ -28,20 +28,20 @@ type TopicImageConfig struct {
 
 type TopicLanguageConfig struct {
 	Language constants.Language `json:"language" bson:"language,omitempty"`
-	Video    VideoConfig        `json:"video" bson:"video,omitempty"`
-	Audio    AudioConfig        `json:"audio" bson:"audio,omitempty"`
+	Video    TopicVideoConfig   `json:"video" bson:"video,omitempty"`
+	Audio    TopicAudioConfig   `json:"audio" bson:"audio,omitempty"`
 }
 
 type Topic struct {
-	ID             primitive.ObjectID `json:"id" bson:"_id,omitempty"`
-	TopicName      string             `json:"topic_name" bson:"topic_name,omitempty"`
-	Title          string             `json:"title" bson:"title,omitempty"`
-	Note           string             `json:"note" bson:"note,omitempty"`
-	Image          []ImageConfig      `json:"image" bson:"image,omitempty"`
-	LanguageConfig []LanguageConfig   `json:"language_config" bson:"language_config,omitempty"`
-	FolderID       primitive.ObjectID `json:"folder_id" bson:"folder_id,omitempty"`
-	CreatedAt      time.Time          `json:"created_at" bson:"created_at,omitempty"`
-	UpdatedAt      time.Time          `json:"updated_at" bson:"updated_at,omitempty"`
+	ID             primitive.ObjectID    `json:"id" bson:"_id,omitempty"`
+	TopicName      string                `json:"topic_name" bson:"topic_name,omitempty"`
+	Title          string                `json:"title" bson:"title,omitempty"`
+	Note           string                `json:"note" bson:"note,omitempty"`
+	Image          []TopicImageConfig    `json:"image" bson:"image,omitempty"`
+	LanguageConfig []TopicLanguageConfig `json:"language_config" bson:"language_config,omitempty"`
+	FolderID       primitive.ObjectID    `json:"folder_id" bson:"folder_id,omitempty"`
+	CreatedAt      time.Time             `json:"created_at" bson:"created_at,omitempty"`
+	UpdatedAt      time.Time             `json:"updated_at" bson:"updated_at,omitempty"`
 }
 
 // GetName returns the name of the gallery
