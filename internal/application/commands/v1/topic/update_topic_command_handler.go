@@ -6,10 +6,6 @@ import (
 	"gallery-service/internal/domain/repository"
 	"gallery-service/pkg/zap"
 	"time"
-
-	"github.com/pkg/errors"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
 type UpdateTopicCommandHandler interface {
@@ -35,35 +31,19 @@ func NewUpdateTopicHandler(
 }
 
 func (u *updateTopicHandler) Handle(ctx context.Context, command *UpdateTopicCommand) error {
-	cluster, err := u.topicRepo.GetByID(ctx, command.ID)
+	topic, err := u.topicRepo.GetByID(ctx, command.ID)
 	if err != nil {
 		return err
-	}
-
-	folderID, err := primitive.ObjectIDFromHex(command.FolderID)
-	if err != nil {
-		return errors.New("invalid folder id")
-	}
-
-	// check if cluster exist
-	exist, err := u.folderRepo.Exists(ctx, bson.M{"_id": folderID})
-	if err != nil {
-		return err
-	}
-
-	if !exist {
-		return errors.New("folder not found")
 	}
 
 	t := models.Topic{
-		ID:             cluster.ID,
+		ID:             topic.ID,
 		TopicName:      command.TopicName,
 		Title:          command.Title,
 		Note:           command.Note,
-		Image:          command.Image,
+		Images:         command.Image,
 		LanguageConfig: command.LanguageConfig,
-		FolderID:       folderID,
-		CreatedAt:      cluster.CreatedAt,
+		CreatedAt:      topic.CreatedAt,
 		UpdatedAt:      time.Now(),
 	}
 

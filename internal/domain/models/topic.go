@@ -37,9 +37,8 @@ type Topic struct {
 	TopicName      string                `json:"topic_name" bson:"topic_name,omitempty"`
 	Title          string                `json:"title" bson:"title,omitempty"`
 	Note           string                `json:"note" bson:"note,omitempty"`
-	Image          []TopicImageConfig    `json:"image" bson:"image,omitempty"`
+	Images         []TopicImageConfig    `json:"image" bson:"image,omitempty"`
 	LanguageConfig []TopicLanguageConfig `json:"language_config" bson:"language_config,omitempty"`
-	FolderID       primitive.ObjectID    `json:"folder_id" bson:"folder_id,omitempty"`
 	CreatedAt      time.Time             `json:"created_at" bson:"created_at,omitempty"`
 	UpdatedAt      time.Time             `json:"updated_at" bson:"updated_at,omitempty"`
 }

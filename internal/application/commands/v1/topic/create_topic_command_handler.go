@@ -8,8 +8,6 @@ import (
 	"gallery-service/pkg/zap"
 	"time"
 
-	"github.com/pkg/errors"
-	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
@@ -40,29 +38,14 @@ func NewCreateTopicHandler(
 
 func (c *createTopicHandler) Handle(ctx context.Context, command *CreateTopicCommand) (*string, error) {
 	id := primitive.NewObjectID()
-	folderID, err := primitive.ObjectIDFromHex(command.FolderID)
-	if err != nil {
-		return nil, errors.New("invalid folder id")
-	}
-
-	// check if folder exist
-	exist, err := c.folderRepo.Exists(ctx, bson.M{"_id": folderID})
-	if err != nil {
-		return nil, err
-	}
-
-	if !exist {
-		return nil, errors.New("folder not found")
-	}
 
 	topic := models.Topic{
 		ID:             id,
 		TopicName:      command.TopicName,
 		Title:          command.Title,
 		Note:           command.Note,
-		Image:          command.Image,
-		LanguageConfig: command.LanguageConfig,
-		FolderID:       folderID,
+		Images:         command.Image,
+		LanguageConfig: []models.TopicLanguageConfig{command.LanguageConfig},
 		CreatedAt:      time.Now(),
 		UpdatedAt:      time.Now(),
 	}

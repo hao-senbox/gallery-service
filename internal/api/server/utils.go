@@ -6,11 +6,12 @@ import (
 	"gallery-service/config"
 	serviceErrors "gallery-service/pkg/service_errors"
 	"gallery-service/pkg/utils"
+	"strings"
+	"time"
+
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
-	"strings"
-	"time"
 )
 
 const (
@@ -28,6 +29,14 @@ func (s *server) mongoMigrationUp(ctx context.Context) {
 
 	// Create the "folders" collection
 	err = s.mongoClient.Database(s.cfg.Mongo.Db).CreateCollection(ctx, s.cfg.Mongo.Collections.Folder)
+	if err != nil {
+		if !utils.CheckErrMessages(err, serviceErrors.ErrMsgMongoCollectionAlreadyExists) {
+			s.log.Warnf("(CreateCollection) err: {%v}", err)
+		}
+	}
+
+	// Create the "topic" collection
+	err = s.mongoClient.Database(s.cfg.Mongo.Db).CreateCollection(ctx, s.cfg.Mongo.Collections.Topic)
 	if err != nil {
 		if !utils.CheckErrMessages(err, serviceErrors.ErrMsgMongoCollectionAlreadyExists) {
 			s.log.Warnf("(CreateCollection) err: {%v}", err)
@@ -70,6 +79,25 @@ func (s *server) mongoMigrationUp(ctx context.Context) {
 		s.log.Infof("(CreatedIndexes) indexes: {%v}", indexes)
 	}
 
+	// Create indexes on the "topic" collection
+	{
+		indexes, err := s.mongoClient.Database(s.cfg.Mongo.Db).Collection(s.cfg.Mongo.Collections.Topic).Indexes().CreateMany(ctx, []mongo.IndexModel{
+			{
+				Keys: bson.D{
+					{"topic_name", "text"},
+					{"title", "text"},
+					{"note", "text"},
+				},
+				Options: options.Index().SetSparse(true).SetName(fmt.Sprintf("%s.text_index", s.cfg.Mongo.Collections.Topic)),
+			},
+		})
+		if err != nil && !utils.CheckErrMessages(err, serviceErrors.ErrMsgAlreadyExists) {
+			s.log.Warnf("(CreateMany) err: {%v}", err)
+		}
+		s.log.Infof("(CreatedIndexes) indexes: {%v}", indexes)
+	}
+
+	// cluster index list
 	list, err := s.mongoClient.Database(s.cfg.Mongo.Db).Collection(s.cfg.Mongo.Collections.Cluster).Indexes().List(ctx)
 	if err != nil {
 		s.log.Warnf("(initMongoDBCollections) [List] err: {%v}", err)
@@ -78,6 +106,21 @@ func (s *server) mongoMigrationUp(ctx context.Context) {
 	if list != nil {
 		var results []bson.M
 		if err := list.All(ctx, &results); err != nil {
+			s.log.Warnf("(All) err: {%v}", err)
+		}
+		s.log.Infof("(indexes) results: {%#v}", results)
+	}
+
+	// topic index list
+
+	listTopic, err := s.mongoClient.Database(s.cfg.Mongo.Db).Collection(s.cfg.Mongo.Collections.Topic).Indexes().List(ctx)
+	if err != nil {
+		s.log.Warnf("(initMongoDBCollections) [List] err: {%v}", err)
+	}
+
+	if listTopic != nil {
+		var results []bson.M
+		if err := listTopic.All(ctx, &results); err != nil {
 			s.log.Warnf("(All) err: {%v}", err)
 		}
 		s.log.Infof("(indexes) results: {%#v}", results)

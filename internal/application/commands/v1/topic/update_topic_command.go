@@ -19,7 +19,6 @@ func NewUpdateTopicCommand(
 	note string,
 	image []models.TopicImageConfig,
 	languageConfig []models.TopicLanguageConfig,
-	folderID string,
 ) *UpdateTopicCommand {
 	return &UpdateTopicCommand{
 		ID:             id,
@@ -28,6 +27,5 @@ func NewUpdateTopicCommand(
 		Note:           note,
 		Image:          image,
 		LanguageConfig: languageConfig,
-		FolderID:       folderID,
 	}
 }

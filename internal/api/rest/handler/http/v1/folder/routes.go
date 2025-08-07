@@ -3,6 +3,7 @@ package folder
 import (
 	"gallery-service/internal/domain/service"
 	"gallery-service/internal/infrastructure/database/mongo/repository"
+
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -15,7 +16,7 @@ func (p *folderHandlers) MapRoutes() func(router fiber.Router) {
 		router.Get("/search", p.SearchFolder)
 		router.Get("/:id", p.GetFolderByID)
 
-		router.Post("/", p.CreateFolder)
+		router.Post("", p.CreateFolder)
 		router.Put("/", p.UpdateFolder)
 		router.Delete("/:id", p.DeleteFolder)
 	}

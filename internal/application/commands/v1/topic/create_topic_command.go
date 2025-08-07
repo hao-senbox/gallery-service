@@ -9,7 +9,7 @@ type CreateTopicCommand struct {
 	Title          string
 	Note           string
 	Image          []models.TopicImageConfig
-	LanguageConfig []models.TopicLanguageConfig
+	LanguageConfig models.TopicLanguageConfig
 	FolderID       string
 }
 
@@ -18,8 +18,7 @@ func NewCreateTopicCommand(
 	title string,
 	note string,
 	image []models.TopicImageConfig,
-	languageConfig []models.TopicLanguageConfig,
-	folderID string,
+	languageConfig models.TopicLanguageConfig,
 ) *CreateTopicCommand {
 	return &CreateTopicCommand{
 		TopicName:      topicName,
@@ -27,6 +26,5 @@ func NewCreateTopicCommand(
 		Note:           note,
 		Image:          image,
 		LanguageConfig: languageConfig,
-		FolderID:       folderID,
 	}
 }

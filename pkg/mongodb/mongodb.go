@@ -26,6 +26,7 @@ type Config struct {
 type MongoCollections struct {
 	Cluster string `mapstructure:"cluster" validate:"required"`
 	Folder  string `mapstructure:"folder" validate:"required"`
+	Topic   string `mapstructure:"topic" validate:"required"`
 }
 
 // Client represents a service that interacts with MongoDB.
