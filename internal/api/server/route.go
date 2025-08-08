@@ -24,7 +24,7 @@ func (s *server) routes() {
 	folderGroup.Route("", folderHandlers.MapRoutes())
 
 	topicGroup := adminAPI.Group("/topics", s.mw.Auth(s.consulClient), s.mw.ValidateSuperAdminRole())
-	topicGroup.Route("", topicHandlers.MapRoutes())
+	topicGroup.Route("", topicHandlers.MapRoutesAdmin())
 
 	// ===== User Routes =====
 	userAPI := s.fiber.Group("/api/v1/user/gallery")
@@ -36,7 +36,7 @@ func (s *server) routes() {
 	userFolderGroup.Route("", folderHandlers.MapRoutes())
 
 	userTopicGroup := userAPI.Group("/topics", s.mw.Auth(s.consulClient))
-	userTopicGroup.Route("", topicHandlers.MapRoutes())
+	userTopicGroup.Route("", topicHandlers.MapRoutesUser())
 
 	// ===== Health Check =====
 	s.fiber.Get("/health", func(ctx *fiber.Ctx) error {

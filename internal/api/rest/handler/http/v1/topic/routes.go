@@ -7,7 +7,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func (p *topicHandlers) MapRoutes() func(router fiber.Router) {
+func (p *topicHandlers) MapRoutesAdmin() func(router fiber.Router) {
 	return func(router fiber.Router) {
 		topicRepository := repository.NewTopicRepository(p.log, p.cfg, p.mongoClient)
 		folderRepository := repository.NewFolderRepository(p.log, p.cfg, p.mongoClient)
@@ -22,5 +22,16 @@ func (p *topicHandlers) MapRoutes() func(router fiber.Router) {
 		router.Post("", p.CreateTopic)
 		router.Put("", p.UpdateTopic)
 		router.Delete("/:id", p.DeleteTopic)
+	}
+}
+
+func (p *topicHandlers) MapRoutesUser() func(router fiber.Router) {
+	return func(router fiber.Router) {
+		topicRepository := repository.NewTopicRepository(p.log, p.cfg, p.mongoClient)
+		folderRepository := repository.NewFolderRepository(p.log, p.cfg, p.mongoClient)
+
+		p.ps = service.NewTopicService(p.cfg.Kafka, p.log, topicRepository, folderRepository)
+		router.Get("", p.GetAllTopic)
+		router.Get("/:id", p.GetTopicByID)
 	}
 }

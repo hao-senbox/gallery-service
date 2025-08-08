@@ -1,0 +1,9 @@
+#### TOPIC
+// ADMIN
+GET:    /api/v1/admin/gallery/topics               GetAll
+GET:    /api/v1/admin/gallery/topics/{id}          GetById
+POST:   /api/v1/admin/gallery/topics              Create
+PUT:    /api/v1/admin/gallery/topics               Update
+// User
+GET:    /api/v1/user/gallery/topics               GetAll
+GET:    /api/v1/user/gallery/topics/{id}          GetById
