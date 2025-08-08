@@ -1,5 +1,7 @@
 package dto
 
+import "time"
+
 type UserEntityResponse struct {
 	ID           string   `json:"id"`
 	Username     string   `json:"username"`
@@ -18,9 +20,22 @@ type UserEntityResponse struct {
 
 	Roles   *[]RoleResponse `json:"roles"`
 	Devices *[]string       `json:"devices"`
+
+	OrganizationAdmin *OrganizationAdmin `json:"organization_admin"`
 }
 
 type RoleResponse struct {
 	ID       int64  `json:"id"`
 	RoleName string `json:"role"`
+}
+
+type OrganizationAdmin struct {
+	ID               string    `json:"id"`
+	OrganizationName string    `json:"organization_name"`
+	Avatar           string    `json:"avatar"`
+	AvatarURL        string    `json:"avatar_url"`
+	Address          string    `json:"address"`
+	Description      string    `json:"description"`
+	CreatedAt        time.Time `json:"created_at"`
+	UpdatedAt        time.Time `json:"updated_at"`
 }

@@ -5,20 +5,21 @@ import (
 	"gallery-service/internal/domain/models"
 )
 
-func GetAllTopicsFromModel(c *models.Topic) topic.GetTopicResponseDto {
+func GetTopicFromModel(c *models.Topic) topic.GetTopicResponseDto {
 	return topic.GetTopicResponseDto{
-		ID:        c.ID.Hex(),
-		TopicName: c.TopicName,
-		ImageKey:  "",
-		ImageURL:  "",
-		Images:    c.Images,
+		ID:             c.ID.Hex(),
+		FileName:       c.FileName,
+		IsPublished:    c.IsPublished,
+		LanguageConfig: c.LanguageConfig,
+		CreatedAt:      c.CreatedAt,
+		UpdatedAt:      c.UpdatedAt,
 	}
 }
 
-func GetAllTopicsFromModels(topics []*models.Topic) []topic.GetTopicResponseDto {
+func GetTopicsFromModels(topics []*models.Topic) []topic.GetTopicResponseDto {
 	res := make([]topic.GetTopicResponseDto, 0, len(topics))
 	for _, c := range topics {
-		res = append(res, GetAllTopicsFromModel(c))
+		res = append(res, GetTopicFromModel(c))
 	}
 	return res
 }

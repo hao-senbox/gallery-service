@@ -16,23 +16,20 @@ type CreateTopicCommandHandler interface {
 }
 
 type createTopicHandler struct {
-	cfg        kafka.Config
-	log        zap.Logger
-	topicRepo  repository.TopicRepository
-	folderRepo repository.FolderRepository
+	cfg       kafka.Config
+	log       zap.Logger
+	topicRepo repository.TopicRepository
 }
 
 func NewCreateTopicHandler(
 	cfg kafka.Config,
 	log zap.Logger,
 	topicRepo repository.TopicRepository,
-	folderRepo repository.FolderRepository,
 ) *createTopicHandler {
 	return &createTopicHandler{
-		cfg:        cfg,
-		log:        log,
-		topicRepo:  topicRepo,
-		folderRepo: folderRepo,
+		cfg:       cfg,
+		log:       log,
+		topicRepo: topicRepo,
 	}
 }
 
@@ -41,11 +38,9 @@ func (c *createTopicHandler) Handle(ctx context.Context, command *CreateTopicCom
 
 	topic := models.Topic{
 		ID:             id,
-		TopicName:      command.TopicName,
-		Title:          command.Title,
-		Note:           command.Note,
-		Images:         command.Image,
-		LanguageConfig: []models.TopicLanguageConfig{command.LanguageConfig},
+		FileName:       command.FileName,
+		IsPublished:    command.IsPublished,
+		LanguageConfig: command.LanguageConfig,
 		CreatedAt:      time.Now(),
 		UpdatedAt:      time.Now(),
 	}

@@ -84,9 +84,7 @@ func (s *server) mongoMigrationUp(ctx context.Context) {
 		indexes, err := s.mongoClient.Database(s.cfg.Mongo.Db).Collection(s.cfg.Mongo.Collections.Topic).Indexes().CreateMany(ctx, []mongo.IndexModel{
 			{
 				Keys: bson.D{
-					{"topic_name", "text"},
-					{"title", "text"},
-					{"note", "text"},
+					{"file_name", "text"},
 				},
 				Options: options.Index().SetSparse(true).SetName(fmt.Sprintf("%s.text_index", s.cfg.Mongo.Collections.Topic)),
 			},

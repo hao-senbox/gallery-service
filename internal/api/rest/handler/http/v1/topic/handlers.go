@@ -63,10 +63,8 @@ func (p *topicHandlers) CreateTopic(c *fiber.Ctx) error {
 	}
 
 	command := topicCommands.NewCreateTopicCommand(
-		reqDto.TopicName,
-		reqDto.Title,
-		reqDto.Note,
-		reqDto.Images,
+		reqDto.FileName,
+		reqDto.IsPublished,
 		reqDto.LanguageConfig,
 	)
 
@@ -109,10 +107,8 @@ func (p *topicHandlers) UpdateTopic(c *fiber.Ctx) error {
 
 	command := topicCommands.NewUpdateTopicCommand(
 		topicID.Hex(),
-		reqDto.TopicName,
-		reqDto.Title,
-		reqDto.Note,
-		reqDto.Images,
+		reqDto.FileName,
+		reqDto.IsPublished,
 		reqDto.LanguageConfig,
 	)
 	err = p.ps.Commands.UpdateTopic.Handle(ctx, command)

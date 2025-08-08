@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"gallery-service/config"
-	"gallery-service/internal/application/dto/responses"
 	"gallery-service/internal/application/dto/responses/topic"
 	"gallery-service/internal/application/mappers"
 	"gallery-service/internal/domain/models"
@@ -47,20 +46,19 @@ func (p *topicRepository) Insert(ctx context.Context, topic *models.Topic) (stri
 }
 
 func (p *topicRepository) Update(ctx context.Context, topic *models.Topic) error {
-	req := make(bson.M)
-	req["topic_name"] = topic.TopicName
-	req["title"] = topic.Title
-	req["note"] = topic.Note
-	req["images"] = topic.Images
-	req["language_config"] = topic.LanguageConfig
-	req["created_at"] = topic.CreatedAt
-	req["updated_at"] = topic.UpdatedAt
+	req := bson.M{
+		"file_name":       topic.FileName,
+		"is_published":    topic.IsPublished,
+		"language_config": topic.LanguageConfig,
+		"created_at":      topic.CreatedAt,
+		"updated_at":      topic.UpdatedAt,
+	}
 
 	result, err := p.getTopicsCollection().UpdateOne(
 		ctx,
 		bson.M{"_id": topic.ID},
-		bson.M{"$set": req})
-
+		bson.M{"$set": req},
+	)
 	if err != nil {
 		return fmt.Errorf("(topicRepository.Update) failed to update: %w", err)
 	}
@@ -110,17 +108,17 @@ func (p *topicRepository) GetAll(ctx context.Context, pq *utils.Pagination) (*to
 	}
 
 	//Prepare pagination response
-	totalCount := len(topics)
+	//totalCount := len(topics)
 
 	return &topic.GetAllTopicResponseDto{
-		Pagination: responses.Pagination{
-			TotalCount: int64(totalCount),
-			TotalPages: int64(pq.GetTotalPages(totalCount)),
-			Page:       int64(pq.GetPage()),
-			Size:       int64(pq.GetSize()),
-			HasMore:    pq.GetHasMore(totalCount),
-		},
-		Topics: mappers.GetAllTopicsFromModels(topics),
+		// Pagination: responses.Pagination{
+		// 	TotalCount: int64(totalCount),
+		// 	TotalPages: int64(pq.GetTotalPages(totalCount)),
+		// 	Page:       int64(pq.GetPage()),
+		// 	Size:       int64(pq.GetSize()),
+		// 	HasMore:    pq.GetHasMore(totalCount),
+		// },
+		Topics: mappers.GetTopicsFromModels(topics),
 	}, nil
 }
 
@@ -190,17 +188,17 @@ func (p *topicRepository) Search(ctx context.Context, query map[string]interface
 	}
 
 	// Prepare pagination response
-	totalCount := len(topics)
+	//totalCount := len(topics)
 
 	return &topic.GetAllTopicResponseDto{
-		Pagination: responses.Pagination{
-			TotalCount: int64(totalCount),
-			TotalPages: int64(pq.GetTotalPages(totalCount)),
-			Page:       int64(pq.GetPage()),
-			Size:       int64(pq.GetSize()),
-			HasMore:    pq.GetHasMore(totalCount),
-		},
-		Topics: mappers.GetAllTopicsFromModels(topics),
+		// Pagination: responses.Pagination{
+		// 	TotalCount: int64(totalCount),
+		// 	TotalPages: int64(pq.GetTotalPages(totalCount)),
+		// 	Page:       int64(pq.GetPage()),
+		// 	Size:       int64(pq.GetSize()),
+		// 	HasMore:    pq.GetHasMore(totalCount),
+		// },
+		Topics: mappers.GetTopicsFromModels(topics),
 	}, nil
 }
 

@@ -13,20 +13,17 @@ type UpdateTopicCommandHandler interface {
 }
 
 type updateTopicHandler struct {
-	log        zap.Logger
-	topicRepo  repository.TopicRepository
-	folderRepo repository.FolderRepository
+	log       zap.Logger
+	topicRepo repository.TopicRepository
 }
 
 func NewUpdateTopicHandler(
 	log zap.Logger,
 	topicRepo repository.TopicRepository,
-	folderRepo repository.FolderRepository,
 ) *updateTopicHandler {
 	return &updateTopicHandler{
-		log:        log,
-		topicRepo:  topicRepo,
-		folderRepo: folderRepo,
+		log:       log,
+		topicRepo: topicRepo,
 	}
 }
 
@@ -38,12 +35,10 @@ func (u *updateTopicHandler) Handle(ctx context.Context, command *UpdateTopicCom
 
 	t := models.Topic{
 		ID:             topic.ID,
-		TopicName:      command.TopicName,
-		Title:          command.Title,
-		Note:           command.Note,
-		Images:         command.Image,
+		FileName:       command.FileName,
+		IsPublished:    command.IsPublished,
 		LanguageConfig: command.LanguageConfig,
-		CreatedAt:      topic.CreatedAt,
+		CreatedAt:      time.Now(),
 		UpdatedAt:      time.Now(),
 	}
 

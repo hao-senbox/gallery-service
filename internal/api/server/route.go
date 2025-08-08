@@ -9,23 +9,36 @@ import (
 )
 
 func (s *server) routes() {
-	// Define routes
-	api := s.fiber.Group("/api/v1/gallery") // Root api
-
-	//api.Use(s.mw.Auth()) // Middleware Auth
 
 	clusterHandlers := clusterV1.NewClusterHandlers(s.log, s.cfg, s.mongoClient)
-	clusterGroup := api.Group("/clusters", s.mw.Auth(s.consulClient)) // Group for cluster
+	folderHandlers := folderV1.NewFolderHandlers(s.log, s.cfg, s.mongoClient)
+	topicHandlers := topicV1.NewTopicHandlers(s.log, s.cfg, s.mongoClient)
+
+	// ===== Admin Routes =====
+	adminAPI := s.fiber.Group("/api/v1/admin/gallery")
+
+	clusterGroup := adminAPI.Group("/clusters", s.mw.Auth(s.consulClient))
 	clusterGroup.Route("", clusterHandlers.MapRoutes())
 
-	folderHandlers := folderV1.NewFolderHandlers(s.log, s.cfg, s.mongoClient)
-	folderGroup := api.Group("/folders", s.mw.Auth(s.consulClient)) // Group for folder
+	folderGroup := adminAPI.Group("/folders", s.mw.Auth(s.consulClient))
 	folderGroup.Route("", folderHandlers.MapRoutes())
 
-	topicHandlers := topicV1.NewTopicHandlers(s.log, s.cfg, s.mongoClient)
-	topicGroup := api.Group("/topics", s.mw.Auth(s.consulClient)) // Group for topic
+	topicGroup := adminAPI.Group("/topics", s.mw.Auth(s.consulClient), s.mw.ValidateSuperAdminRole())
 	topicGroup.Route("", topicHandlers.MapRoutes())
 
+	// ===== User Routes =====
+	userAPI := s.fiber.Group("/api/v1/user/gallery")
+
+	userClusterGroup := userAPI.Group("/clusters", s.mw.Auth(s.consulClient))
+	userClusterGroup.Route("", clusterHandlers.MapRoutes())
+
+	userFolderGroup := userAPI.Group("/folders", s.mw.Auth(s.consulClient))
+	userFolderGroup.Route("", folderHandlers.MapRoutes())
+
+	userTopicGroup := userAPI.Group("/topics", s.mw.Auth(s.consulClient))
+	userTopicGroup.Route("", topicHandlers.MapRoutes())
+
+	// ===== Health Check =====
 	s.fiber.Get("/health", func(ctx *fiber.Ctx) error {
 		return ctx.Status(200).JSON(nil)
 	})

@@ -4,28 +4,21 @@ import "gallery-service/internal/domain/models"
 
 type UpdateTopicCommand struct {
 	ID             string
-	TopicName      string
-	Title          string
-	Note           string
-	Image          []models.TopicImageConfig
-	LanguageConfig []models.TopicLanguageConfig
-	FolderID       string
+	FileName       string                       `json:"file_name"`
+	IsPublished    bool                         `json:"is_published"`
+	LanguageConfig []models.TopicLanguageConfig `json:"language_config"`
 }
 
 func NewUpdateTopicCommand(
 	id string,
-	topicName string,
-	title string,
-	note string,
-	image []models.TopicImageConfig,
+	fileName string,
+	isPublished bool,
 	languageConfig []models.TopicLanguageConfig,
 ) *UpdateTopicCommand {
 	return &UpdateTopicCommand{
 		ID:             id,
-		TopicName:      topicName,
-		Title:          title,
-		Note:           note,
-		Image:          image,
+		FileName:       fileName,
+		IsPublished:    isPublished,
 		LanguageConfig: languageConfig,
 	}
 }

@@ -13,14 +13,14 @@ func (p *topicHandlers) MapRoutes() func(router fiber.Router) {
 		folderRepository := repository.NewFolderRepository(p.log, p.cfg, p.mongoClient)
 
 		p.ps = service.NewTopicService(p.cfg.Kafka, p.log, topicRepository, folderRepository)
-		router.Get("/", p.GetAllTopic)
+		router.Get("", p.GetAllTopic)
 		router.Get("/search", p.SearchTopic)
 		router.Get("/components", p.GetTopicComponents)
 		router.Get("/languages", p.GetTopicLanguages)
 		router.Get("/:id", p.GetTopicByID)
 
-		router.Post("/", p.CreateTopic)
-		router.Put("/", p.UpdateTopic)
+		router.Post("", p.CreateTopic)
+		router.Put("", p.UpdateTopic)
 		router.Delete("/:id", p.DeleteTopic)
 	}
 }

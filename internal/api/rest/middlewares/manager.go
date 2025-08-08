@@ -5,19 +5,22 @@ import (
 	"fmt"
 	"gallery-service/config"
 	"gallery-service/internal/pkg/apicall"
+	"gallery-service/internal/pkg/apicall/dto"
 	httpPkg "gallery-service/pkg/http"
 	"gallery-service/pkg/zap"
-	"github.com/gofiber/fiber/v2"
-	"github.com/hashicorp/consul/api"
-	"github.com/pkg/errors"
 	"runtime/debug"
 	"strings"
 	"time"
+
+	"github.com/gofiber/fiber/v2"
+	"github.com/hashicorp/consul/api"
+	"github.com/pkg/errors"
 )
 
 type MiddlewareManager interface {
 	RequestLoggerMiddleware() fiber.Handler
 	Auth(*api.Client) fiber.Handler
+	ValidateSuperAdminRole() fiber.Handler
 	Recovery() fiber.Handler
 }
 
@@ -99,6 +102,35 @@ func (mw *middlewareManager) Auth(client *api.Client) fiber.Handler {
 
 		// If the token is valid, proceed to the next handler
 		return c.Next()
+	}
+}
+
+func (mw *middlewareManager) ValidateSuperAdminRole() fiber.Handler {
+	return func(c *fiber.Ctx) error {
+		// Get current_user from context
+		user, ok := c.UserContext().Value("current_user").(*dto.UserEntityResponse)
+		if !ok || user == nil {
+			mw.log.Warn("current_user not found in context")
+			return httpPkg.ErrorCtxResponse(c, errors.New("unauthorized"), mw.cfg.App.API.Rest.Setting.DebugErrorsResponse)
+		}
+
+		// Check if Roles is present
+		if user.Roles == nil || len(*user.Roles) == 0 {
+			mw.log.Warnf("user %s has no roles assigned", user.ID)
+			return httpPkg.ErrorCtxResponse(c, errors.New("forbidden: requires SuperAdmin role"), mw.cfg.App.API.Rest.Setting.DebugErrorsResponse)
+		}
+
+		// Look for "SuperAdmin" role
+		for _, role := range *user.Roles {
+			if strings.EqualFold(role.RoleName, "SuperAdmin") {
+				// Role found, proceed
+				return c.Next()
+			}
+		}
+
+		// Role not found
+		mw.log.Warnf("user %s attempted to access without SuperAdmin role", user.ID)
+		return httpPkg.ErrorCtxResponse(c, errors.New("forbidden: requires SuperAdmin role"), mw.cfg.App.API.Rest.Setting.DebugErrorsResponse)
 	}
 }
 

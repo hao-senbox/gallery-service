@@ -3,11 +3,13 @@ package apicall
 import (
 	"context"
 	"encoding/json"
+	"gallery-service/internal/application/dto/responses"
 	"gallery-service/internal/pkg/apicall/dto"
 	"gallery-service/pkg/consul"
+	"net/http"
+
 	"github.com/hashicorp/consul/api"
 	"github.com/pkg/errors"
-	"net/http"
 )
 
 var (
@@ -58,14 +60,24 @@ func (c *CallAPI) GetUserByID(ctx context.Context, userID string) (*dto.UserEnti
 }
 
 func (c *CallAPI) GetUserByToken(_ context.Context, token string) (*dto.UserEntityResponse, error) {
-	res, err := c.client.CallAPI(c.clientService, basePath+"/user/current-user", http.MethodGet, nil, map[string]string{
-		"Authorization": token,
-	})
+	res, err := c.client.CallAPI(
+		c.clientService,
+		basePath+"/user/current-user",
+		http.MethodGet,
+		nil,
+		map[string]string{
+			"Authorization": token,
+		},
+	)
 	if err != nil {
 		return nil, err
 	}
-	var resDTO dto.UserEntityResponse
-	err = json.Unmarshal(res, &resDTO)
 
-	return &resDTO, err
+	var apiRes responses.APIResponse[dto.UserEntityResponse]
+	err = json.Unmarshal(res, &apiRes)
+	if err != nil {
+		return nil, err
+	}
+
+	return &apiRes.Data, nil
 }

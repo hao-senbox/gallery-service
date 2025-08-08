@@ -5,26 +5,19 @@ import (
 )
 
 type CreateTopicCommand struct {
-	TopicName      string
-	Title          string
-	Note           string
-	Image          []models.TopicImageConfig
-	LanguageConfig models.TopicLanguageConfig
-	FolderID       string
+	FileName       string                       `json:"file_name"`
+	IsPublished    bool                         `json:"is_published"`
+	LanguageConfig []models.TopicLanguageConfig `json:"language_config"`
 }
 
 func NewCreateTopicCommand(
-	topicName string,
-	title string,
-	note string,
-	image []models.TopicImageConfig,
-	languageConfig models.TopicLanguageConfig,
+	fileName string,
+	isPublished bool,
+	languageConfig []models.TopicLanguageConfig,
 ) *CreateTopicCommand {
 	return &CreateTopicCommand{
-		TopicName:      topicName,
-		Title:          title,
-		Note:           note,
-		Image:          image,
+		FileName:       fileName,
+		IsPublished:    isPublished,
 		LanguageConfig: languageConfig,
 	}
 }

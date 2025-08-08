@@ -27,8 +27,8 @@ func NewTopicService(
 		return topicService
 	}
 
-	createTopicHandler := topicCommands.NewCreateTopicHandler(cfg, log, topicRepo, folderRepo)
-	updateTopicHandler := topicCommands.NewUpdateTopicHandler(log, topicRepo, folderRepo)
+	createTopicHandler := topicCommands.NewCreateTopicHandler(cfg, log, topicRepo)
+	updateTopicHandler := topicCommands.NewUpdateTopicHandler(log, topicRepo)
 	deleteTopicHandler := topicCommands.NewDeleteTopicHandler(log, topicRepo)
 
 	getAllTopicHandler := topic.NewGetAllTopicHandler(log, topicRepo)
