@@ -70,7 +70,7 @@ func (p *topicRepository) Update(ctx context.Context, topic *models.Topic) error
 	return nil
 }
 
-func (p *topicRepository) GetAll(ctx context.Context, pq *utils.Pagination) (*topic.GetAllTopicResponseDto, error) {
+func (p *topicRepository) GetAll(ctx context.Context, pq *utils.Pagination) ([]topic.GetTopicResponseDto, error) {
 	if pq.Page <= 0 {
 		pq.Page = 1
 	}
@@ -84,12 +84,8 @@ func (p *topicRepository) GetAll(ctx context.Context, pq *utils.Pagination) (*to
 	limit := int64(pq.Size)
 
 	aggPipeline := []bson.M{
-		{
-			"$skip": skip,
-		},
-		{
-			"$limit": limit,
-		},
+		{"$skip": skip},
+		{"$limit": limit},
 	}
 
 	// Perform the search query on the topics collection
@@ -103,23 +99,12 @@ func (p *topicRepository) GetAll(ctx context.Context, pq *utils.Pagination) (*to
 	// Create a slice to hold the search results
 	var topics []*models.Topic
 	if err := cursor.All(ctx, &topics); err != nil {
-		p.log.Errorf("(topicRepository.GetAll) Error fetching topics: %v", err)
+		p.log.Errorf("(topicRepository.GetAll) Error decoding topics: %v", err)
 		return nil, errors.Wrap(err, "cursor.All")
 	}
 
-	//Prepare pagination response
-	//totalCount := len(topics)
-
-	return &topic.GetAllTopicResponseDto{
-		// Pagination: responses.Pagination{
-		// 	TotalCount: int64(totalCount),
-		// 	TotalPages: int64(pq.GetTotalPages(totalCount)),
-		// 	Page:       int64(pq.GetPage()),
-		// 	Size:       int64(pq.GetSize()),
-		// 	HasMore:    pq.GetHasMore(totalCount),
-		// },
-		Topics: mappers.GetTopicsFromModels(topics),
-	}, nil
+	// Map sang DTO slice
+	return mappers.GetTopicsFromModels(topics), nil
 }
 
 func (p *topicRepository) GetByID(ctx context.Context, topicID string) (*models.Topic, error) {

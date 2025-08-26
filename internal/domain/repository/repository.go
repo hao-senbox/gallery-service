@@ -33,7 +33,7 @@ type FolderRepository interface {
 type TopicRepository interface {
 	Insert(ctx context.Context, topic *models.Topic) (string, error)
 	Update(ctx context.Context, topic *models.Topic) error
-	GetAll(ctx context.Context, pq *utils.Pagination) (*topic.GetAllTopicResponseDto, error)
+	GetAll(ctx context.Context, pq *utils.Pagination) ([]topic.GetTopicResponseDto, error)
 	GetByID(ctx context.Context, topicID string) (*models.Topic, error)
 	Search(ctx context.Context, query map[string]interface{}, pq *utils.Pagination) (*topic.GetAllTopicResponseDto, error)
 	Delete(ctx context.Context, topicID string) (bool, error)
