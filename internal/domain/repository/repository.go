@@ -38,5 +38,5 @@ type TopicRepository interface {
 	Search(ctx context.Context, query map[string]interface{}, pq *utils.Pagination) (*topic.GetAllTopicResponseDto, error)
 	Delete(ctx context.Context, topicID string) (bool, error)
 	Exists(ctx context.Context, query map[string]interface{}) (bool, error)
-	GetAll4App(ctx context.Context) (*topic.GetAllTopicForAppResponseDto, error)
+	GetAll4App(ctx context.Context) ([]topic.TopicForAppResponseDto, error)
 }

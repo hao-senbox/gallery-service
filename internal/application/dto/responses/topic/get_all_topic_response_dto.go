@@ -19,10 +19,6 @@ type GetTopicResponseDto struct {
 	UpdatedAt      time.Time                    `json:"updated_at"`
 }
 
-type GetAllTopicForAppResponseDto struct {
-	Topics []TopicForAppResponseDto `json:"topics"`
-}
-
 type TopicForAppResponseDto struct {
 	ID        string `json:"id"`
 	TopicName string `json:"topic_name"`
