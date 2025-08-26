@@ -45,7 +45,7 @@ type TopicLanguageConfig struct {
 
 type Topic struct {
 	ID             primitive.ObjectID    `json:"id" bson:"_id,omitempty"`
-	FileName       string                `json:"file_name" bson:"file_name,omitempty"`
+	TopicName      string                `json:"topic_name" bson:"topic_name,omitempty"`
 	IsPublished    bool                  `json:"is_published" bson:"is_published,omitempty"`
 	LanguageConfig []TopicLanguageConfig `json:"language_config" bson:"language_config,omitempty"`
 	CreatedAt      time.Time             `json:"created_at" bson:"created_at,omitempty"`

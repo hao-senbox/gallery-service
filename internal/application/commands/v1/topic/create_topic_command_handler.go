@@ -38,7 +38,7 @@ func (c *createTopicHandler) Handle(ctx context.Context, command *CreateTopicCom
 
 	topic := models.Topic{
 		ID:             id,
-		FileName:       command.FileName,
+		TopicName:      command.TopicName,
 		IsPublished:    command.IsPublished,
 		LanguageConfig: command.LanguageConfig,
 		CreatedAt:      time.Now(),

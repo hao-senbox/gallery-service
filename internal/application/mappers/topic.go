@@ -8,7 +8,7 @@ import (
 func GetTopicFromModel(c *models.Topic) topic.GetTopicResponseDto {
 	return topic.GetTopicResponseDto{
 		ID:             c.ID.Hex(),
-		FileName:       c.FileName,
+		TopicName:      c.TopicName,
 		IsPublished:    c.IsPublished,
 		LanguageConfig: c.LanguageConfig,
 		CreatedAt:      c.CreatedAt,

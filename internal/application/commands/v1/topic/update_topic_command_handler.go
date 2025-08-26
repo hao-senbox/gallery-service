@@ -35,7 +35,7 @@ func (u *updateTopicHandler) Handle(ctx context.Context, command *UpdateTopicCom
 
 	t := models.Topic{
 		ID:             topic.ID,
-		FileName:       command.FileName,
+		TopicName:      command.TopicName,
 		IsPublished:    command.IsPublished,
 		LanguageConfig: command.LanguageConfig,
 		CreatedAt:      time.Now(),

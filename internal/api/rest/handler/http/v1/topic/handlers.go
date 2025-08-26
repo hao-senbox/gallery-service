@@ -63,7 +63,7 @@ func (p *topicHandlers) CreateTopic(c *fiber.Ctx) error {
 	}
 
 	command := topicCommands.NewCreateTopicCommand(
-		reqDto.FileName,
+		reqDto.TopicName,
 		reqDto.IsPublished,
 		reqDto.LanguageConfig,
 	)

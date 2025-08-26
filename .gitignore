@@ -43,3 +43,6 @@ go.sum
 
 #config file
 .bin/config.dev.yaml
+
+# ignore debug
+__debug_bin*

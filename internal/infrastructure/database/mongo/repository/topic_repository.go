@@ -47,7 +47,7 @@ func (p *topicRepository) Insert(ctx context.Context, topic *models.Topic) (stri
 
 func (p *topicRepository) Update(ctx context.Context, topic *models.Topic) error {
 	req := bson.M{
-		"file_name":       topic.FileName,
+		"file_name":       topic.TopicName,
 		"is_published":    topic.IsPublished,
 		"language_config": topic.LanguageConfig,
 		"created_at":      topic.CreatedAt,
