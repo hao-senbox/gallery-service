@@ -141,8 +141,6 @@ func (p *topicHandlers) GetAllTopic(c *fiber.Ctx) error {
 		return httpPkg.ErrorCtxResponse(c, err, p.cfg.App.API.Rest.Setting.DebugErrorsResponse)
 	}
 
-	p.log.Infof("(Hanlders.GetAll) result: {%+v}", response)
-
 	return httpPkg.SuccessCtxResponse(c, http.StatusOK, "Topic found", response)
 }
 
@@ -177,8 +175,6 @@ func (p *topicHandlers) GetTopicByID(c *fiber.Ctx) error {
 		p.log.Errorf("(Handlers.GetByID)(Handle) id: {%s}, err: {%v}", topicID.String(), err)
 		return httpPkg.ErrorCtxResponse(c, err, p.cfg.App.API.Rest.Setting.DebugErrorsResponse)
 	}
-
-	p.log.Infof("(Handlers.GetByID) topicID: {%s}", topicID.String())
 
 	return httpPkg.SuccessCtxResponse(c, http.StatusOK, "Topic found", topic)
 }
@@ -218,8 +214,6 @@ func (p *topicHandlers) SearchTopic(c *fiber.Ctx) error {
 		p.log.Errorf("(Handlers.Search)(Handle) query: {%v}, err: {%v}", reqDto, err)
 		return httpPkg.ErrorCtxResponse(c, err, p.cfg.App.API.Rest.Setting.DebugErrorsResponse)
 	}
-
-	p.log.Infof("(Hanlders.Search) result: {%+v}", searchRes)
 
 	return httpPkg.SuccessCtxResponse(c, http.StatusOK, "Topic found", searchRes)
 }
@@ -283,4 +277,15 @@ func (p *topicHandlers) GetTopicLanguages(c *fiber.Ctx) error {
 	}
 
 	return httpPkg.SuccessCtxResponse(c, http.StatusOK, "Topic languages found", res)
+}
+
+func (p *topicHandlers) GetAllTopic4App(c *fiber.Ctx) error {
+	ctx := c.Context()
+	response, err := p.ps.Queries.GetAllTopic.Handle4App(ctx)
+	if err != nil {
+		p.log.Errorf("(Create.Handle) Error fetching topics: {%v}", err)
+		return httpPkg.ErrorCtxResponse(c, err, p.cfg.App.API.Rest.Setting.DebugErrorsResponse)
+	}
+
+	return httpPkg.SuccessCtxResponse(c, http.StatusOK, "Topic found", response)
 }

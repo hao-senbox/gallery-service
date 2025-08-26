@@ -223,6 +223,33 @@ func (p *topicRepository) Exists(ctx context.Context, query map[string]interface
 	return count > 0, nil
 }
 
+func (p *topicRepository) GetAll4App(ctx context.Context) (*topic.GetAllTopicForAppResponseDto, error) {
+	cur, err := p.getTopicsCollection().Find(ctx, bson.M{})
+	if err != nil {
+		p.log.Errorf("(topicRepository.GetAll4App) Error fetching topics: %v", err)
+		return nil, errors.Wrap(err, "find topics failed")
+	}
+	defer cur.Close(ctx)
+
+	var topics []*models.Topic
+	if err := cur.All(ctx, &topics); err != nil {
+		p.log.Errorf("(topicRepository.GetAll4App) Error decoding topics: %v", err)
+		return nil, errors.Wrap(err, "cursor.All")
+	}
+
+	var topicForAppList []topic.TopicForAppResponseDto
+	for _, t := range topics {
+		topicForAppList = append(topicForAppList, topic.TopicForAppResponseDto{
+			ID:        t.ID.Hex(),
+			TopicName: t.TopicName,
+		})
+	}
+
+	return &topic.GetAllTopicForAppResponseDto{
+		Topics: topicForAppList,
+	}, nil
+}
+
 func (p *topicRepository) getTopicsCollection() *mongo.Collection {
 	return p.db.Database(p.cfg.Mongo.Db).Collection(p.cfg.Mongo.Collections.Topic)
 }

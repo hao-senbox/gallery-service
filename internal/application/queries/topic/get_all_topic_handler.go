@@ -10,6 +10,7 @@ import (
 
 type GetAllTopicQueryHandler interface {
 	Handle(ctx context.Context, pq *utils.Pagination) (*topic.GetAllTopicResponseDto, error)
+	Handle4App(ctx context.Context) (*topic.GetAllTopicForAppResponseDto, error)
 }
 
 type getTopicHandler struct {
@@ -23,4 +24,8 @@ func NewGetAllTopicHandler(log zap.Logger, topicRepo repository.TopicRepository)
 
 func (q *getTopicHandler) Handle(ctx context.Context, pq *utils.Pagination) (*topic.GetAllTopicResponseDto, error) {
 	return q.topicRepo.GetAll(ctx, pq)
+}
+
+func (q *getTopicHandler) Handle4App(ctx context.Context) (*topic.GetAllTopicForAppResponseDto, error) {
+	return q.topicRepo.GetAll4App(ctx)
 }
