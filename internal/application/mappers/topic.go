@@ -23,3 +23,10 @@ func GetTopicsFromModels(topics []*models.Topic) []topic.GetTopicResponseDto {
 	}
 	return res
 }
+
+func GetTopic4GatewayFromModel(c *models.Topic) *topic.Topic4GatwayResponseDto {
+	return &topic.Topic4GatwayResponseDto{
+		ID:        c.ID.Hex(),
+		TopicName: c.TopicName,
+	}
+}

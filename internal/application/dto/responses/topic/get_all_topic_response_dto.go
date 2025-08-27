@@ -23,3 +23,8 @@ type TopicForAppResponseDto struct {
 	ID        string `json:"id"`
 	TopicName string `json:"topic_name"`
 }
+
+type Topic4GatwayResponseDto struct {
+	ID        string `json:"id"`
+	TopicName string `json:"topic_name"`
+}

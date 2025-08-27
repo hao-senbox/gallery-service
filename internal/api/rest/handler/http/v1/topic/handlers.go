@@ -302,3 +302,29 @@ func (p *topicHandlers) GetAllTopic4Gateway(c *fiber.Ctx) error {
 
 	return httpPkg.SuccessCtxResponse(c, http.StatusOK, "Topic found", response)
 }
+
+func (p *topicHandlers) GetTopicByID4Gateway(c *fiber.Ctx) error {
+	ctx := c.Context()
+	param := c.Params(constants.ID)
+	p.log.Infof("(Handlers.GetByID) id: {%s}", param)
+
+	topicID, err := primitive.ObjectIDFromHex(param)
+	if err != nil {
+		p.log.Errorf("(Handlers.GetByID)(uuid.FromString) err: {%v}", err)
+		return httpPkg.ErrorCtxResponse(c, err, p.cfg.App.API.Rest.Setting.DebugErrorsResponse)
+	}
+
+	topicQuery := topicQueries.NewGetTopicByIDQuery(topicID.Hex())
+	err = p.val.DataValidation(topicQuery)
+	if err != nil {
+		return httpPkg.ErrorCtxResponse(c, err, p.cfg.App.API.Rest.Setting.DebugErrorsResponse)
+	}
+
+	topic, err := p.ps.Queries.GetTopicByID.Handle4Gateway(ctx, topicQuery)
+	if err != nil {
+		p.log.Errorf("(Handlers.GetByID)(Handle) id: {%s}, err: {%v}", topicID.String(), err)
+		return httpPkg.ErrorCtxResponse(c, err, p.cfg.App.API.Rest.Setting.DebugErrorsResponse)
+	}
+
+	return httpPkg.SuccessCtxResponse(c, http.StatusOK, "Topic found", topic)
+}

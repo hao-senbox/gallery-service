@@ -43,5 +43,6 @@ func (p *topicHandlers) MapRoutesGateway() func(router fiber.Router) {
 
 		p.ps = service.NewTopicService(p.cfg.Kafka, p.log, topicRepository, folderRepository)
 		router.Get("", p.GetAllTopic4Gateway)
+		router.Get("/:id", p.GetTopicByID4Gateway)
 	}
 }
