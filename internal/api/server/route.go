@@ -38,6 +38,11 @@ func (s *server) routes() {
 	userTopicGroup := userAPI.Group("/topics", s.mw.Auth(s.consulClient))
 	userTopicGroup.Route("", topicHandlers.MapRoutesUser())
 
+	// ===== Gateway Routes =====
+	gatewayAPI := s.fiber.Group("/api/v1/gateway/gallery")
+	gatewayTopicGroup := gatewayAPI.Group("/topics")
+	gatewayTopicGroup.Route("", topicHandlers.MapRoutesGateway())
+
 	// ===== Health Check =====
 	s.fiber.Get("/health", func(ctx *fiber.Ctx) error {
 		return ctx.Status(200).JSON(nil)

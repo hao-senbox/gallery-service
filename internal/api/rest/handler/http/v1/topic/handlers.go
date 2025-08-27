@@ -289,3 +289,16 @@ func (p *topicHandlers) GetAllTopic4App(c *fiber.Ctx) error {
 
 	return httpPkg.SuccessCtxResponse(c, http.StatusOK, "Topic found", response)
 }
+
+// gateway handlers
+func (p *topicHandlers) GetAllTopic4Gateway(c *fiber.Ctx) error {
+	ctx := c.Context()
+	pq := utils.NewPaginationQuery(0, 0)
+	response, err := p.ps.Queries.GetAllTopic.Handle4Gateway(ctx, pq)
+	if err != nil {
+		p.log.Errorf("(Create.Handle) Error fetching topics: {%v}", err)
+		return httpPkg.ErrorCtxResponse(c, err, p.cfg.App.API.Rest.Setting.DebugErrorsResponse)
+	}
+
+	return httpPkg.SuccessCtxResponse(c, http.StatusOK, "Topic found", response)
+}

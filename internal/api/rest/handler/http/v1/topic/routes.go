@@ -35,3 +35,13 @@ func (p *topicHandlers) MapRoutesUser() func(router fiber.Router) {
 		router.Get("/:id", p.GetTopicByID)
 	}
 }
+
+func (p *topicHandlers) MapRoutesGateway() func(router fiber.Router) {
+	return func(router fiber.Router) {
+		topicRepository := repository.NewTopicRepository(p.log, p.cfg, p.mongoClient)
+		folderRepository := repository.NewFolderRepository(p.log, p.cfg, p.mongoClient)
+
+		p.ps = service.NewTopicService(p.cfg.Kafka, p.log, topicRepository, folderRepository)
+		router.Get("", p.GetAllTopic4Gateway)
+	}
+}
